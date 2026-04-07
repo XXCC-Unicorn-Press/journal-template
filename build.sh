@@ -9,10 +9,11 @@ TARGET_DIR="target"
 mkdir -p "$TARGET_DIR"
 rm -rf "$TARGET_DIR"/*
 
-# Export Inkscape figures
+# Export resouces
 cp resources/logo.png "$TARGET_DIR/logo.png"
 cp resources/frontcover.png "$TARGET_DIR/frontcover.png"
 cp resources/backcover.png "$TARGET_DIR/backcover.png"
+cp LICENSE "$TARGET_DIR/LICENSE"
 
 # Compile the LaTeX document (print version)
 LATEX_MODE="PRINT" latexmk
