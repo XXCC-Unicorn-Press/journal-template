@@ -1,0 +1,15 @@
+\chapter{Usage}
+\label{chap:usage}
+
+To turn a written article into a journal issue using this template, you can follow these steps:
+
+\begin{enumerate}[label=\textbf{(\arabic*)}]
+  \item Copy \verb|content/|, \verb|figures/|, \verb|preamble/custom.tex|, and \verb|references.bib| from your article project.
+  \item \verb|\include| the content files in \verb|main.tex|. You should place front matter files (e.g., introduction) to after \verb|\frontmatter| and main content files (e.g., features) to after \verb|\mainmatter|.
+  \item Change the ``section'' commands to ``chapter'' commands in the content files.
+  \item Modify the metadata in \verb|preamble/metadata.tex|.
+  \item Update the front cover with the correct volume and issue numbers.
+  \item Run \verb|./resources/export.sh| to export the covers from \verb|.svg| format to \verb|.png| format, which is the format used in the journal issue.
+  \item Run \verb|./build.sh| to build the journal issue. The output files will be saved in the \verb|target/| directory.
+  \item Push the changes to the \verb|main| branch to publish the journal issue onto GitHub Pages.
+\end{enumerate}

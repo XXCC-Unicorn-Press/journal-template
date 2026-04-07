@@ -1,0 +1,38 @@
+% \def\ONLINEVERSION{1}
+
+\ifdefined\ONLINEVERSION
+  \PassOptionsToClass{oneside}{book}
+\fi
+
+\documentclass[11pt, a4paper]{book}
+
+\input{preamble/main}
+
+\begin{document}
+
+\ifdefined\ONLINEVERSION
+  \includepdf{frontcover.png}
+\fi
+
+\include{frontmatter/title}
+\include{frontmatter/verso}
+
+\frontmatter
+\tableofcontents
+\include{frontmatter/introduction}
+
+\mainmatter
+\include{content/features}
+\include{content/usage}
+
+\backmatter
+\nocite{*}
+\printbibliography[heading=bibintoc]
+
+\label{LastPage}
+
+\ifdefined\ONLINEVERSION
+  \includepdf{backcover.png}
+\fi
+
+\end{document}

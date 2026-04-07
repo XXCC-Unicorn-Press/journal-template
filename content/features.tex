@@ -1,0 +1,43 @@
+\chapter{Features}
+\label{chap:features}
+
+This template provides an out-of-box experience for turning a written article into a journal issue, which can be used for both print and online versions.
+
+\section{Compatibility}
+
+This template is compatible with the template in \cite{article-template}.
+This means that you can write your article using \cite{article-template} and then directly copy and paste the content into this template.
+The only modification you need to make is to change the ``section'' commands to ``chapter'' commands.
+
+\section{Two formats}
+
+This template provides two formats for the journal issue: a print format and an online format.
+
+\begin{description}
+  \item[Print]
+    This format is designed for printing the journal issue.
+    It uses a two-sided layout, which means that the headers are different on odd and even pages, the margins are adjusted accordingly, and chapters start on odd pages.
+    The front and back covers are not included in the document, for the convenience of printing and binding.
+  
+  \item[Online]
+    This format is designed for online reading of the journal issue.
+    It uses a one-sided layout.
+    The front and back covers are directly included in the document.
+\end{description}
+
+You can run \verb|./build.sh| to build both formats, and the output files will be saved in the \verb|target/| directory.
+See \Cref{chap:usage} for more details on how to build the journal issue.
+
+\section{Cover design}
+
+The covers of the journal issue is designed with Inkscape, which is a free and open-source vector graphics editor.
+The source files of the covers are included in the \verb|resources/| directory, and you can modify them directly (e.g., update the volume and issue numbers).
+
+\verb|./resources/export.sh| is a script that can be used to export the covers from \verb|.svg| format to \verb|.png| format, which is the format used in the journal issue.
+This is because GitHub actions do not support Inkscape, so we cannot directly use the \verb|.svg| files in the journal issue.
+
+\section{GitHub actions}
+
+This template uses GitHub actions to automate the building and publishing of the journal issue.
+When you push changes to the \verb|main| branch, the GitHub action will automatically build both formats of the journal issue and publishes them onto GitHub Pages.
+The published journal issue can be accessed at \url{\docpublisherwebsite/<repo-name>}.
