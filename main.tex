@@ -2,12 +2,15 @@
 
 \ifdefined\ONLINEVERSION
   \PassOptionsToClass{oneside}{book}
-  \usepackage{pdfpages}
 \fi
 
 \documentclass[11pt, a4paper]{book}
 
 \input{preamble/main}
+
+\ifdefined\ONLINEVERSION
+  \usepackage{pdfpages}
+\fi
 
 \begin{document}
 
