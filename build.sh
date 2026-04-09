@@ -24,3 +24,6 @@ latexmk -C
 LATEX_MODE="ONLINE" latexmk
 cp main.pdf "$TARGET_DIR/online.pdf"
 latexmk -C
+
+# Output the target directory path
+echo "Build complete. Output files are located in: $TARGET_DIR"
