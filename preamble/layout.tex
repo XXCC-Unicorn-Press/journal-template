@@ -72,7 +72,7 @@
 \renewcommand{\mainmatter}{\mainmatterOrig\pagestyle{main}}
 \renewcommand{\backmatter}{\backmatterOrig\pagestyle{main}}
 
-%% Set up title styles.
+%% Set up chapter heading style.
 
 % Extract the leading character.
 \ExplSyntaxOn
@@ -115,4 +115,54 @@
   \chapter*{#1}%
   \markboth{#1}{#1}%
   \addcontentsline{toc}{chapter}{#1}%
+}
+
+%% Set up title styles.
+\usepackage{titlesec}
+
+% section
+\titleformat{\section}
+  {\sffamily\bfseries\large}
+  {\thesubsection}
+  {0.5em}
+  {}
+
+% subsection
+\titleformat{\subsection}
+  {\sffamily\bfseries\centering}
+  {}
+  {0pt}
+  {}
+
+%% Set up toc styles.
+\usepackage{xcolor}
+\usepackage{titletoc}
+
+\setcounter{tocdepth}{2}
+
+% chapter
+\titlecontents{chapter}[1.6em]
+  {\addvspace{0.5em}\bfseries}
+  {\contentslabel{1.4em}}{\hspace*{-1.4em}}
+  {\hfill\normalfont\contentspage[\bfseries\thecontentspage]}
+
+% section
+\titlecontents{section}[4.0em]
+  {\addvspace{0.2em}}
+  {\contentslabel{2.3em}}{\hspace*{-2.3em}}
+  {\textcolor{gray}{\titlerule*[9pt]{.}}\contentspage}
+
+% subsection
+\newcommand*{\sspace}{\hspace{0.34em plus 0.5em minus 0.12em}}
+\titlecontents*{subsection}[4.7em]
+  {\footnotesize\color{gray}}
+  {}{}
+  {~\thecontentspage}
+  []
+  [\sspace\textbullet\sspace][\hspace*{0.6em}\vspace{0.1em}]
+
+% Custom macro to show the contents.
+\newcommand{\makecontents}{%
+  \hypersetup{hidelinks}%
+  \tableofcontents%
 }
