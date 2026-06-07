@@ -1,5 +1,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{eucal}
 \usepackage{quiver}
 \usepackage[extdef]{delimset}
 \usepackage{mathtools}
@@ -18,7 +19,7 @@
 % operator declarations
 \ExplSyntaxOn
 
-\NewDocumentCommand{\DeclareOperators}{m}
+\NewDocumentCommand{\DeclareOps}{m}
   {
     \clist_map_inline:nn { #1 } {
       \cs_set_protected:cpn { ##1 } { \operatorname{##1} }
@@ -32,10 +33,28 @@
     }
   }
 
-\NewDocumentCommand{\DeclareCategories}{m}
+\tl_new:N \l__math_cat_result_tl
+\NewDocumentCommand{\mathcat}{m}
+  {
+    \tl_clear:N \l__math_cat_result_tl
+    \tl_map_inline:nn { #1 }
+      {
+        \tl_put_right:Ne \l__math_cat_result_tl
+          {
+            \bool_lazy_and:nnTF
+              { \int_compare_p:n { `##1 >= `A } }
+              { \int_compare_p:n { `##1 <= `Z } }
+              { \exp_not:n { \mathcal{##1} } }
+              { \exp_not:n { \mathrm{##1} } }
+          }
+      }
+    \tl_use:N \l__math_cat_result_tl
+  }
+
+\NewDocumentCommand{\DeclareCats}{m}
   {
     \clist_map_inline:nn { #1 } {
-      \cs_set_protected:cpn { ##1 } { \mathbf{##1} }
+      \cs_set_protected:cpe { ##1 } { \mathcat{##1} }
     }
   }
 
@@ -46,10 +65,24 @@
     }
   }
 
-\NewDocumentCommand{\DeclareMathcals}{m}
+\NewDocumentCommand{\DeclareBbs}{m}
+  {
+    \clist_map_inline:nn { #1 } {
+      \cs_set_protected:cpn { ##1 } { \mathbb{##1} }
+    }
+  }
+
+\NewDocumentCommand{\DeclareCals}{m}
   {
     \clist_map_inline:nn { #1 } {
       \cs_set_protected:cpn { ##1##1 } { \mathcal{##1} }
+    }
+  }
+
+\NewDocumentCommand{\DeclareFraks}{m}
+  {
+    \clist_map_inline:nn { #1 } {
+      \cs_set_protected:cpn { ##1##1 } { \mathfrak{##1} }
     }
   }
 
